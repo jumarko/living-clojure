@@ -63,7 +63,7 @@ who-atom
   (run-in-thread n)
   (run-in-thread n)
   (run-in-thread n) )
-
+@counter
 
 
 ;;; Using Refs for Coordinated Changes
@@ -172,12 +172,11 @@ who-atom
 
 (def who-agent (agent :caterpillar))
 (send-off who-agent change)
-n@who-agent
+@who-agent
 
 ;; What happens when agent has an error or exception?
 (def who-agent (agent :caterpillar))
 (defn change-error [state]
-  (Thread/sleep 5000)
   (throw (Exception. "Boom")))
 
 (send who-agent change-error)
